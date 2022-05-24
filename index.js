@@ -1,64 +1,49 @@
+const books = document.querySelector('.lists')
 
-const terminate = document.querySelectorAll('.lists');
-Array.from(terminate).forEach((term) => {
-    term.addEventListener('click', (e) => {
+let data = JSON.parse(localStorage.getItem('data'));
 
-        const li = e.target.parentElement;
-        li.parentNode.removeChild(li)
-    })
-
-});
-
-
-const bookList = document.querySelector('.lists')
-const form = document.forms['myform'];
-
-form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const bookTitle = form.querySelector('.title').value;
-    const bookAuthor = form.querySelector('.author').value;
-    //Store data
-    const data = JSON.stringify({bookTitle,bookAuthor});
-    localStorage.setItem('data',data);
-    //creating elements
+function displayBook(title,author){
     const li = document.createElement('li');
     const author = document.createElement('span');
     const title = document.createElement('span');
     const btn = document.createElement('button');
     btn.classList.add('remove');
-    //appending
     li.appendChild(title);
     li.appendChild(author);
     li.appendChild(btn);
-    bookList.appendChild(li);
-    //Content display
+    books.appendChild(li);
     btn.textContent = 'Remove';
+    btn.addEventListener('click',()=>{removeBook(title,author,books)});
     author.textContent = bookAuthor;
     title.textContent = bookTitle;
-});
+}
 
-function populateStorage() {
-    const formValues = JSON.parse(localStorage.getItem('data'));
-    if (formValues) {
-    const bookTitle = formValues.bookTitle;
-    const bookAuthor = formValues.bookAuthor;
+function addBook(title,author){
+    data.push({title, author,});
+    localStorage.setItem('data', JSON.stringify(data));
+    displayBook(title,author);
+}
 
-    const li = document.createElement('li');
-    const author = document.createElement('span');
-    const title = document.createElement('span');
-    const btn = document.createElement('button');
-    btn.classList.add('remove');
-    //appending
-    li.appendChild(title);
-    li.appendChild(author);
-    li.appendChild(btn);
-    bookList.appendChild(li);
-    //Content display
-    btn.textContent = 'Remove';
-    author.textContent = bookAuthor;
-    title.textContent = bookTitle;
+function removeBook(title,author,element){
+    element.remove();
+    data.filter(data.title!=title&&data.author!=author);
+}
 
+if(data) {
+    for (let i=0 ;i<data.length;i+=1){
+        displayBook(data[i].title,data[i].author);
     }
-  }
+}
+else{
+    data=[];
+}
 
-  populateStorage();
+const form = document.getElementById('myform');
+const bookTitle = form.querySelector('.title');
+const bookAuthor = form.querySelector('.author');
+form.addEventListener('submit', (e) => {
+    addBook(bookTitle.value,bookAuthor.value);
+    bookTitle.value='';
+    bookAuthor.value='';
+    e.preventDefault();
+});
