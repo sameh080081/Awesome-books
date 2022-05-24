@@ -1,21 +1,30 @@
-const books = document.querySelector('.lists')
 
 let data = JSON.parse(localStorage.getItem('data'));
+const books = document.getElementById('lists')
 
 function displayBook(title,author){
-    const li = document.createElement('li');
-    const author = document.createElement('span');
-    const title = document.createElement('span');
-    const btn = document.createElement('button');
-    btn.classList.add('remove');
-    li.appendChild(title);
-    li.appendChild(author);
-    li.appendChild(btn);
-    books.appendChild(li);
-    btn.textContent = 'Remove';
-    btn.addEventListener('click',()=>{removeBook(title,author,books)});
-    author.textContent = bookAuthor;
-    title.textContent = bookTitle;
+    const bookColumn = document.createElement('div');
+    {
+      const bookTitle = document.createElement('h3');
+      bookTitle.innerText = title;
+      bookColumn.appendChild(bookTitle);
+
+      const bookAuthor = document.createElement('h3');
+      bookAuthor.innerText = author;
+      bookColumn.appendChild(bookAuthor);
+
+      const removeBotton = document.createElement('button');
+      removeBotton.type = 'button';
+      removeBotton.innerText = 'Remove';
+      removeBotton.addEventListener('click', () => {
+        removeBook(title, author, bookColumn);
+      });
+      bookColumn.appendChild(removeBotton);
+
+      const vector = document.createElement('hr');
+      bookColumn.appendChild(vector);
+    }
+    books.appendChild(bookColumn);
 }
 
 function addBook(title,author){
@@ -26,7 +35,12 @@ function addBook(title,author){
 
 function removeBook(title,author,element){
     element.remove();
-    data.filter(data.title!=title&&data.author!=author);
+    for (let i = 0; i < data.length; i += 1) {
+        if (data[i].title === title && data[i].author === author) {
+          data.splice(i, 1);
+        }
+      }
+    localStorage.setItem('data', JSON.stringify(data));
 }
 
 if(data) {
@@ -39,11 +53,12 @@ else{
 }
 
 const form = document.getElementById('myform');
-const bookTitle = form.querySelector('.title');
-const bookAuthor = form.querySelector('.author');
+const bookT = form.querySelector('.title');
+const bookA = form.querySelector('.author');
+
 form.addEventListener('submit', (e) => {
-    addBook(bookTitle.value,bookAuthor.value);
-    bookTitle.value='';
-    bookAuthor.value='';
+    addBook(bookT.value,bookA.value);
+    bookT.value='';
+    bookA.value='';
     e.preventDefault();
 });
