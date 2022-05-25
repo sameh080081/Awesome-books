@@ -1,4 +1,15 @@
 /* stylelint-disable no-missing-end-of-source-newline */
+header {
+  display: grid;
+  grid-template-columns: 1fr 0.2fr 0.2fr 0.2fr;
+  justify-content: center;
+  align-items: center;
+}
+
+header > a {
+  text-decoration: none;
+}
+
 #myform {
   display: flex;
   flex-direction: column;
@@ -14,7 +25,6 @@ input {
 }
 
 h1 {
-  margin-left: 200px;
 }
 
 #lists {
