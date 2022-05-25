@@ -18,9 +18,8 @@ h1 {
 }
 
 #lists {
-  margin-left: 200px;
-  width: 400px;
-  height: auto;
+  width: fit-content;
+  margin: auto;
   border: 2px solid #1a1a1a;
 }
 
@@ -39,10 +38,10 @@ td {
   box-shadow: 0 5px 5px rgba(0, 0, 0, 10);
 }
 
-#lists:nth-child(2) {
-  background: #887b7b;
+tr {
+  width: 100%;
 }
 
-#lists:nth-child(0) {
-  background: #fff;
+#lists > tr:nth-child(odd) {
+  background-color: #d4c3c3;
 }
