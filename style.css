@@ -1,12 +1,48 @@
+/* stylelint-disable no-missing-end-of-source-newline */
 #myform {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 300px;
-  margin: 10px 20px;
+  margin-left: 160px;
 }
 
-hr {
-  width: 40%;
-  margin-left: 0;
+input {
+  margin: 5px;
+  padding-top: 5px;
+  border: 2px solid #1a1a1a;
+}
+
+h1 {
+  margin-left: 200px;
+}
+
+#lists {
+  margin-left: 200px;
+  width: 400px;
+  height: auto;
+  border: 2px solid #1a1a1a;
+}
+
+#addbtn {
+  width: 70px;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 10);
+}
+
+td {
+  padding-left: 20px;
+}
+
+.delete {
+  margin-left: 25px;
+  margin-top: 5px;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 10);
+}
+
+#lists:nth-child(2) {
+  background: #887b7b;
+}
+
+#lists:nth-child(0) {
+  background: #fff;
 }
