@@ -1,4 +1,6 @@
 /* eslint max-classes-per-file: ["error", 3] */
+const body = document.querySelector('body');
+const list = document.createElement('div');
 class Storage {
   static getBook() {
     let books;
@@ -42,7 +44,6 @@ class Interface {
   }
 
   static updateBookList(book) {
-    const list = document.querySelector('#lists');
     const row = document.createElement('tr');
     row.innerHTML = `
     <td>${book.title}</td>
@@ -51,6 +52,7 @@ class Interface {
     <button class= 'delete' >Remove</button>
     `;
     list.appendChild(row);
+    body.appendChild(list);
   }
 
   static removeBook(el) {
