@@ -1,3 +1,4 @@
+/* eslint max-classes-per-file: ["error", 3] */
 class Storage {
   static getBook() {
     let books;
