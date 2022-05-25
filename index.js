@@ -1,4 +1,3 @@
-/* eslint max-classes-per-file: ["error", 3] */
 class Storage {
   static getBook() {
     let books;
@@ -75,6 +74,7 @@ document.querySelector('#myform').addEventListener('submit', (e) => {
   Storage.addBook(book);
   Interface.clearInputs();
 });
+
 const remove = document.querySelector('#lists');
 remove.addEventListener('click', (e) => {
   const title = e.target.previousElementSibling.previousElementSibling
