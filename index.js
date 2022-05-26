@@ -86,3 +86,15 @@ remove.addEventListener('click', (e) => {
   Storage.removeBook(title, author);
   Interface.removeBook(e.target);
 });
+
+
+const form=document.getElementById('formBtn');
+const contactNav=document.getElementById('contact-btn');
+
+const nav1=document.getElementById('nav1');
+const nav2=document.getElementById('nav2');
+const nav3=document.getElementById('nav3');
+
+nav1.addEventListener('click', (e) => {list.classList.add('active');});
+nav1.addEventListener('click', (e) => {form.classList.add('active');});
+nav3.addEventListener('click', (e) => {contactNav.classList.add('active');});
