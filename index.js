@@ -84,3 +84,34 @@ remove.addEventListener('click', (e) => {
   Storage.removeBook(title, author);
   Interface.removeBook(e.target);
 });
+
+document.querySelectorAll('.nav').forEach((nav) => {
+  nav.addEventListener('click', (e) => {
+    document.querySelectorAll('.nav').forEach((nav2) => nav2.classList.remove('activelink'));
+    e.preventDefault();
+    e.target.classList.add('activelink');
+    document.querySelectorAll('.section').forEach((section) => {
+      section.classList.remove('active');
+      section.classList.add('hidden');
+    });
+    document.querySelector(e.target.getAttribute('href')).classList.remove('hidden');
+    document.querySelector(e.target.getAttribute('href')).classList.add('active');
+  });
+});
+
+const myDate = () => {
+  const date = new Date();
+  const options = {
+    weekday: undefined,
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  };
+  const [month, time] = [
+    date.toLocaleDateString(undefined, options),
+    date.toLocaleTimeString().toLocaleLowerCase(),
+  ];
+  document.getElementById('currenttime').innerHTML = `${month}, ${time}`;
+};
+myDate();
+setInterval(myDate, 1000);
