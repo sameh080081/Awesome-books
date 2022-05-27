@@ -165,3 +165,7 @@ footer {
 footer p {
   padding: 1px 20px;
 }
+
+#currenttime {
+  margin-left: 1000px;
+}
