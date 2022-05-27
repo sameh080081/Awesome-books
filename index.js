@@ -91,7 +91,9 @@ document.querySelectorAll('.nav').forEach((nav) => {
    document.querySelectorAll('.nav').forEach((nav2) => nav2.classList.remove('activelink'));
     e.preventDefault();
     e.target.classList.add('activelink');
-    document.querySelectorAll('.btn').forEach((btn) => btn.classList.remove('btn')); 
+    document.querySelectorAll('.section').forEach((section) => {section.classList.remove('active');
+    section.classList.add('hidden')}); 
+      document.querySelector(e.target.getAttribute('href')).classList.remove('hidden')
     document.querySelector(e.target.getAttribute('href')).classList.add('active');
   });
 });

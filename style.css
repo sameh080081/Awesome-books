@@ -66,6 +66,10 @@ header div:nth-child(2) ul li:last-child a {
   display: block;
 }
 
+.hidden {
+  display: none;
+}
+
 .activelink {
   color: #1b64d1 !important;
   border-color: #1b64d1;
