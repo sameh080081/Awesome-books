@@ -1,6 +1,5 @@
+
 /* eslint max-classes-per-file: ["error", 3] */
-const body = document.querySelector('body');
-const list = document.createElement('div');
 class Storage {
   static getBook() {
     let books;
@@ -44,6 +43,7 @@ class Interface {
   }
 
   static updateBookList(book) {
+    const list = document.querySelector('#lists');
     const row = document.createElement('tr');
     row.innerHTML = `
     <td>${book.title}</td>
@@ -52,7 +52,6 @@ class Interface {
     <button class= 'delete' >Remove</button>
     `;
     list.appendChild(row);
-    body.appendChild(list);
   }
 
   static removeBook(el) {
@@ -87,14 +86,12 @@ remove.addEventListener('click', (e) => {
   Interface.removeBook(e.target);
 });
 
-
-const form=document.getElementById('formBtn');
-const contactNav=document.getElementById('contact-btn');
-
-const nav1=document.getElementById('nav1');
-const nav2=document.getElementById('nav2');
-const nav3=document.getElementById('nav3');
-
-nav1.addEventListener('click', (e) => {list.classList.add('active');});
-nav1.addEventListener('click', (e) => {form.classList.add('active');});
-nav3.addEventListener('click', (e) => {contactNav.classList.add('active');});
+document.querySelectorAll('.nav').forEach((nav) => {
+  nav.addEventListener('click', (e) => {
+   document.querySelectorAll('.nav').forEach((nav2) => nav2.classList.remove('activelink'));
+    e.preventDefault();
+    e.target.classList.add('activelink');
+    document.querySelectorAll('.btn').forEach((btn) => btn.classList.remove('btn')); 
+    document.querySelector(e.target.getAttribute('href')).classList.add('active');
+  });
+});
